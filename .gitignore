@@ -1,0 +1,15 @@
+.env
+cert/
+code*.zip
+site_template.zip
+!package-lock.json
+coverage/
+npm-debug.log
+cartridges.zip
+.idea/
+.DS_Store
+.vscode
+.history
+*.iml
+.idea
+*.code-workspace
