@@ -1,0 +1,76 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700|PT+Mono);
+
+*:focus{
+	outline: none;
+}
+
+.window {
+    width: 100%;
+    background: GhostWhite;
+    border-radius: 0.3rem;
+    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    font-family: monospace;
+}
+.window .window-header {
+    padding: 1rem;
+    background: Gainsboro;
+    position: relative;
+}
+
+.window .window-header .control {
+    margin-left: 1rem;
+    font-family: sans-serif;
+}
+
+.window .window-body {
+    position: relative;
+    height: 500px;
+}
+.window .window-body .code-input, .window .window-body .code-output {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    border: none;
+    font-family: 'PT Mono', monospace;
+    font-size: 0.8rem;
+    background: transparent;
+    white-space: pre-wrap;
+    line-height: 1.5em;
+    word-wrap: break-word;
+}
+.window .window-body .code-input {
+    opacity: 0.7;
+    margin: 0;
+    color: #999;
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+}
+.window .window-body .code-output {
+    pointer-events: none;
+    z-index: 3;
+    margin: 0;
+    overflow-y: auto;
+}
+.window .window-body .code-output code {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 1rem;
+    display: block;
+    color: #666;
+    font-size: 0.8rem;
+    font-family: 'PT Mono', monospace;
+}
+
+.window .window-result {
+    padding: 1rem;
+    background-color: #202020;
+    color: #ffffff;
+}

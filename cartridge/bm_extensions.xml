@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<extensions xmlns="http://www.demandware.com/xml/bmmodules/2007-12-11" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.demandware.com/xml/bmmodules/2007-12-11 bmext.xsd">
+<extensions xmlns="http://www.demandware.com/xml/bmmodules/2007-12-11"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.demandware.com/xml/bmmodules/2007-12-11 bmext.xsd">
 
 
   <menuitem id="customadminmenuextension_sf" position="99999" site="false">
@@ -10,15 +11,15 @@
     <icon>icons/salesforce.png</icon>
   </menuitem>
 
-  <menuaction id="customsubmenu_sf_nodeInterpreter" menupath="customadminmenuextension_omtools" position="100" site="false">
+  <menuaction id="customsubmenu_sf_nodeInterpreter" menupath="customadminmenuextension_sf" position="100" site="false">
     <name xml:lang="x-default">Node Interpreter</name>
     <short_description xml:lang="x-default">This extension enable Node code to be executed.</short_description>
     <description xml:lang="x-default">This extension enable Node code to be executed.</description>
 
-    <exec pipeline="Interpreter" node="Show" />
+    <exec pipeline="NodeInterpreter" node="Show" />
     <sub-pipelines>
-      <pipeline name="Interpreter-Show" />
-      <pipeline name="Interpreter-Run" />
+      <pipeline name="NodeInterpreter-Show" />
+      <pipeline name="NodeInterpreter-Run" />
     </sub-pipelines>
     <parameters>
       <parameter name="menuname" value="Node Interpreter" />

@@ -1,89 +1,33 @@
-<iscontent type="text/html" charset="UTF-8" compact="true" />
-<!doctype html>
-<html>
+<isdecorate template="application/MenuFrame">
 
-<head>
-  <title>Node Interpreter</title>
-  <link href="${URLUtils.staticURL('bmcss/bootstrap/jquery-ui-1.8.16.custom.css')}" type="text/css" rel="stylesheet" />
-  <link href="${URLUtils.staticURL('bmcss/bootstrap/bootstrap.css')}" type="text/css" rel="stylesheet" />
-  <link href="${URLUtils.staticURL('bmcss/bootstrap/jquery.layout.css')}" type="text/css" rel="stylesheet" />
-  <link href="${URLUtils.staticURL('bmcss/editor.css')}" type="text/css" rel="stylesheet" />
-</head>
+<link rel="stylesheet" href="${URLUtils.staticURL('/nibm/css/prism.min.css')}" />
+<link rel="stylesheet" href="${URLUtils.staticURL('/nibm/css/style.css')}" />
 
-<body>
-  
-  <div id="container">
-    <div id="layout">
-      <div class="ui-layout-center">
-        <div id="editor">${pdict.Code}</div>
-        <div class="functions">
-          <button class="button-run">Run (ctrl + enter)</button>
-        </div>
-      </div>
-      <iframe name="run" class="ui-layout-south console" frameborder="0"></iframe>
-    </div>
-    <form id="form-run" action="JSShell-Run" method="POST" style="display: none" target="run">
-      <input type="hidden" id="script" name="code" value="" />
-    </form>
+<script type="text/javascript" src="${URLUtils.staticURL('/nibm/js/prism.min.js')}"></script>
+
+<div class="window">
+  <div class="window-header">
+    <a href="javascript: void 0;"class="control">Run</a>
   </div>
-  <script src="${URLUtils.staticURL('bmjs/jquery/jquery.min.js')}"></script>
-  <script src="${URLUtils.staticURL('bmjs/jquery/jquery-ui.min.js')}"></script>
-  <script src="${URLUtils.staticURL('bmjs/jquery/jquery.layout-latest.js')}"></script>
-  <script src="${URLUtils.staticURL('bmjs/ace/ace.js')}"></script>
-  <script type="text/javascript">
-  (function(){
-    var editor, resizeTo, onresize = function() {
-      if (resizeTo) { clearTimeout(resizeTo); }
-      resizeTo = setTimeout(function(){
-        editor.resize();
-        editor.renderer.updateFull();
-      }, 10);
-    }
-    var checkScript = function() {
-      var script = editor.getSession().getValue();
-      if (script.trim().length > 0) {
-        $("#script").val(script);
-        return true;
-      } else {
-        alert("Cannot execute action, the script is empty.");
-        return false;
-      }
-    }
+  <div class="window-body">
+    <textarea class="code-input" spellcheck="false">
+'use strict';
 
-    $("#layout").layout({
-      applyDefaultStyles:       true,
-      south: { size: 150, onresize_end: onresize, onshow_end: onresize, onhide_end: onresize, onopen_end: onresize, onclose_end: onresize }
-    });
-    $(".button-run").button({
-      icons: {
-        primary: "ui-icon-play"
-      },
-      text: false
-    }).click(function(){
-      if (checkScript()) {
-        $("#form-run").submit();
-      }
-    });
+var ProductMgr = require('dw/catalog/ProductMgr');
 
-    editor = ace.edit("editor");
-    editor.setTheme("ace/theme/twilight");
-    editor.getSession().setMode("ace/mode/javascript");
-    
-    editor.commands.addCommand({
-      name: "run",
-      bindKey: {
-        win: "Ctrl-Return",
-        mac: "Command-Return",
-        sender: "editor"
-      },
-      exec: function() {
-        $(".button-run").click();
-      }
-    });
-    $(window).resize(onresize);
-    $(window).resize();
-  })();
-</script>
-</body>
+const product = ProductMgr.getProduct('123456');
 
-</html>
+print(product.name);</textarea>
+    <pre class="code-output">
+      <code class="language-javascript"></code>
+    </pre>
+  </div>
+  <div class="window-result">
+    <pre>The output will be displayed here!</pre>
+  </div>
+</div>
+
+<script type="text/javascript" src="${URLUtils.staticURL('/nibm/js/main.js')}" defer></script>
+
+
+</isdecorate>
