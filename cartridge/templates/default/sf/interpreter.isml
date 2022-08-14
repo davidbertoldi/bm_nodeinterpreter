@@ -7,17 +7,15 @@
 
 <div class="window">
   <div class="window-header">
-    <a href="javascript: void 0;"class="control">Run</a>
+    <a href="javascript: void 0;" class="control" id="js-nodeinterpreter-run" data-href="NodeInterpreter-Run">Run</a>
   </div>
   <div class="window-body">
     <textarea class="code-input" spellcheck="false">
 'use strict';
 
-var ProductMgr = require('dw/catalog/ProductMgr');
+var Site = require('dw/system/Site');
 
-const product = ProductMgr.getProduct('123456');
-
-print(product.name);</textarea>
+print(Site.current.name);</textarea>
     <pre class="code-output">
       <code class="language-javascript"></code>
     </pre>

@@ -5,7 +5,7 @@
 
 
   <menuitem id="customadminmenuextension_sf" position="99999" site="false">
-    <name xml:lang="x-default">Node Interpreter</name>
+    <name xml:lang="x-default">Additional administrative tools</name>
     <short_description xml:lang="x-default">Additional administrative tools</short_description>
     <description xml:lang="x-default">Additional administrative tools</description>
     <icon>icons/salesforce.png</icon>

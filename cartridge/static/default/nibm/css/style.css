@@ -73,4 +73,21 @@
     padding: 1rem;
     background-color: #202020;
     color: #ffffff;
+    border-top: 3px solid #6c757d;
+}
+
+.window .window-result pre.err{
+    color: #ff0000;
+}
+
+.window .window-result pre.stack{
+    color: #ffffff;
+    background-color: #dc3545;
+    border-radius: 0.3rem;
+}
+
+.window .window-result pre.eval{
+    color: #ffffff;
+    background-color: #28a745;
+    border-radius: 0.3rem;
 }

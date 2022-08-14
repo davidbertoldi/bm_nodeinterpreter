@@ -1,6 +1,9 @@
 'use strict';
 
 const Logger = require('dw/system/Logger');
+const StringUtils = require('dw/util/StringUtils');
+
+var buffer = []
 
 function show() {
   dw.template.ISML.renderTemplate('sf/interpreter', {
@@ -8,48 +11,45 @@ function show() {
   });
 }
 
-function println() {
-  response.writer.println(dw.util.StringUtils.format.apply(null, arguments));
-  response.writer.flush();
-}
 function print() {
-  response.writer.print(dw.util.StringUtils.format.apply(null, arguments));
-  response.writer.flush();
+  buffer.push({
+    error: false,
+    txt: StringUtils.format.apply(null, arguments)
+  });
+}
+
+function err() {
+  buffer.push({
+    error: true,
+    msg: StringUtils.format.apply(null, arguments)
+  });
 }
 
 function run() {
-  var result = '';
   var code = request.httpParameterMap.code.stringValue;
   var error = false;
+  var exception = null;
+  var codeResult = null;
   response.setBuffered(false);
-  if (request.httpParameterMap.html.submitted && request.httpParameterMap.html.stringValue == 'false') {
-    response.setContentType('text/plain');
-  } else {
-    response.setContentType('text/html');
-    println('<html><body><pre>');
-  }
-  if (code) {
-    try {
-      print(this);
-      var fn = new Function(code);
-      result = fn.call(null);
-    } catch (e) {
-      error = e;
-      Logger.error('Error in running script', e);
-    }
-  }
-  if (result) {
-    println(result);
-  }
-  if (error) {
-    println('Exception: ' + error.message);
-    println('  in file: ' + error.fileName + '#' + error.lineNumber);
-    println(error.stack);
+  try {
+    var fn = new Function(code);
+    codeResult = fn.call();
+  } catch (e) {
+    exception = e;
+    Logger.error('Error in running script', e);
+    error = true;
+    err(e);
   }
 
-  if (!request.httpParameterMap.html.submitted || request.httpParameterMap.html.stringValue != 'false') {
-    println('</pre></body></html>');
-  }
+  response.setContentType('application/json');
+  response.writer.print(JSON.stringify({
+    error: error,
+    exception: exception,
+    codeResult: codeResult,
+    buffer: buffer
+  }));
+
+  buffer = null;
 }
 
 show.public = true;

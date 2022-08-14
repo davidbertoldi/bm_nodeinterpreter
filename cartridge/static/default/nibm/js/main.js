@@ -1,4 +1,4 @@
-var MicroCode = (function () {
+var SFEditor = (function () {
     return {
         init: function (inputSel, outputSel) {
             this.focusInput(inputSel);
@@ -54,4 +54,40 @@ var MicroCode = (function () {
     };
 }());
 
-MicroCode.init('.code-input', '.code-output');
+SFEditor.init('.code-input', '.code-output');
+
+function renderResult(result) {
+    jQuery('.window-result').text('');
+    if (result.buffer) {
+        result.buffer.forEach(function (element) {
+            if (element.error) {
+                jQuery('.window-result').append('<pre class="err">' + JSON.stringify(element.msg) + '</pre>');
+            } else {
+                jQuery('.window-result').append('<pre>' + element.txt + '</pre>');
+            }
+        });
+        if (result.error) {
+            jQuery('.window-result').css('border-top', '3px solid #dc3545');
+            jQuery('.window-result').append('<pre class="stack">' + JSON.stringify(result.exception, null, 4) + '</pre>');
+        } else {
+            jQuery('.window-result').css('border-top', '3px solid #28a745');
+        }
+    }
+
+    if (result.codeResult) {
+        jQuery('.window-result').append('<pre class="eval"> &gt; ' + result.codeResult + '</pre>');
+    }
+}
+
+jQuery('#js-nodeinterpreter-run').on('click', function (e) {
+    e.preventDefault();
+    jQuery('.window-result').css('border-top', '3px solid #007bff');
+    var href = jQuery('#js-nodeinterpreter-run').data('href');
+    jQuery.post(href,
+        {
+            code: jQuery('.code-input').val()
+        })
+    .done(function (data) {
+        renderResult(data);
+    });
+});
