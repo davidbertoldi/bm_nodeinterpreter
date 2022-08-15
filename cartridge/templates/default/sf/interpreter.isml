@@ -5,6 +5,18 @@
 
 <script type="text/javascript" src="${URLUtils.staticURL('/nibm/js/prism.min.js')}"></script>
 
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td width="100%" class="w e s table_title">Node Interpreter</td>
+  </tr>
+  <tr>
+    <td valign="top" class="table_title_description w e s">
+      <p>This page allows to run Node code in SFCC context. This solution is <strong>NOT</strong> eligible for Salesforce Support. Use at your own risk.</p>
+      <p>Use the function <strong>print()</strong> to output the results, <strong>err()</strong> to display an error.</p>
+    </td>
+  </tr>
+</table>
+
 <div class="window">
   <div class="window-header">
     <a href="javascript: void 0;" class="control" id="js-nodeinterpreter-run" data-href="NodeInterpreter-Run">Run</a>
@@ -14,7 +26,6 @@
 'use strict';
 
 var Site = require('dw/system/Site');
-
 print(Site.current.name);</textarea>
     <pre class="code-output">
       <code class="language-javascript"></code>

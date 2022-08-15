@@ -89,5 +89,8 @@ jQuery('#js-nodeinterpreter-run').on('click', function (e) {
         })
     .done(function (data) {
         renderResult(data);
+    }).fail(function (xhr, status, error) {
+        jQuery('.window-result').css('border-top', '3px solid #dc3545');
+        console.error(error);
     });
 });

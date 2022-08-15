@@ -25,7 +25,7 @@
 
 .window .window-body {
     position: relative;
-    height: 500px;
+    height: 450px;
 }
 .window .window-body .code-input, .window .window-body .code-output {
     position: absolute;

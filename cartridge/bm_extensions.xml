@@ -8,7 +8,7 @@
     <name xml:lang="x-default">Additional administrative tools</name>
     <short_description xml:lang="x-default">Additional administrative tools</short_description>
     <description xml:lang="x-default">Additional administrative tools</description>
-    <icon>icons/salesforce.png</icon>
+    <icon>nibm/icons/salesforce.png</icon>
   </menuitem>
 
   <menuaction id="customsubmenu_sf_nodeInterpreter" menupath="customadminmenuextension_sf" position="100" site="false">
@@ -25,7 +25,7 @@
       <parameter name="menuname" value="Node Interpreter" />
       <parameter name="mainmenuname" value="SF Tools" />
     </parameters>
-    <icon>icons/node.png</icon>
+    <icon>nibm/icons/node.png</icon>
   </menuaction>
 
 </extensions>
