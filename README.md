@@ -5,6 +5,8 @@ This product is intended for technical people who knows how to properly code in 
 Unintended usage (like big queries or object deletion) may cause disruption in the system. 
 This solution and its effects are **NOT** eligible for Salesforce Support. Use at your own risk.
 
+![example](https://i.imgur.com/3hHEIQU.png)
+
 ## Overview
 When it is not possible to enter to debug mode or make custom queries without the help of a Support Ticket, a Node interpreter is useful to solve problems fast and precisely. The first case is difficult to handle in production environment and the second case may require a lot of time and exhausting back-and-forth. In the meantime the situation is getting worse and worse :fire:
 
