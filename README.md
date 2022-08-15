@@ -7,7 +7,7 @@ This solution and its effects are **NOT** eligible for Salesforce Support. Use a
 
 
 ## Overview
-When problems arise, it is not possible to enter in debug mode, that is difficult to handle in production environment, or make custom queries without the help of a Support Ticket. In the meantime the situation is getting worse and worse in your production environment :fire:
+When problems arise, it is not possible to enter in debug mode, that is difficult to handle in live systems, or make custom queries without the help of a Support Ticket. In the meantime the situation is getting worse and worse in your production environment :fire:
 
 A Node interpreter is useful to solve problems fast and precisely!
 
