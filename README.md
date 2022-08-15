@@ -19,7 +19,7 @@ git submodule add --depth 1 git@github.com:davidbertoldi/bm_nodeinterpreter.git
 ```
 The `bm_nodeinterpreter` folder will be added. The submodule will be pointed to branch `main`, that always contains the last stable version.
 
-Then add the cartridge it your site's path in *Administration > Manage Sites > Settings* (better if you do it for all the sites).
+Then add the cartridge to your site's path in *Administration > Manage Sites > Settings* (better if you do it for all the sites).
 
 ## Usage
 This module must be restricted to admin users.
