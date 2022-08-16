@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="${URLUtils.staticURL('/nibm/css/prism.min.css')}" />
 <link rel="stylesheet" href="${URLUtils.staticURL('/nibm/css/style.css')}" />
 
-<script type="text/javascript" src="${URLUtils.staticURL('/nibm/js/prism.min.js')}"></script>
+<script src="${URLUtils.staticURL('/nibm/js/prism.min.js')}"></script>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
@@ -22,11 +22,7 @@
     <a href="javascript: void 0;" class="control" id="js-nodeinterpreter-run" data-href="NodeInterpreter-Run">Run</a>
   </div>
   <div class="window-body">
-    <textarea class="code-input" spellcheck="false">
-'use strict';
-
-var Site = require('dw/system/Site');
-print(Site.current.name);</textarea>
+    <textarea class="code-input" spellcheck="false">${pdict.code}</textarea>
     <pre class="code-output">
       <code class="language-javascript"></code>
     </pre>
@@ -36,7 +32,7 @@ print(Site.current.name);</textarea>
   </div>
 </div>
 
-<script type="text/javascript" src="${URLUtils.staticURL('/nibm/js/main.js')}" defer></script>
+<script src="${URLUtils.staticURL('/nibm/js/main.js')}" defer='defer'></script>
 
 
 </isdecorate>

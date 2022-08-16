@@ -1,46 +1,41 @@
 'use strict';
 
-const Logger = require('dw/system/Logger');
+const Logger = require('dw/system/Logger').getLogger('BMNI','NodeInterpreter');
 const StringUtils = require('dw/util/StringUtils');
 
+// The buffer is a global object.
 var buffer = []
 
-function show() {
+/**
+ * Shows the editor in the Business Manager
+ */
+function __internal__interpreter__show() {
   dw.template.ISML.renderTemplate('sf/interpreter', {
-    Code: ''
+    code: '\'use strict\';\n\nvar Site = require(\'dw/system/Site\');\nprint(Site.current.name);',
   });
 }
 
-function print() {
-  buffer.push({
-    error: false,
-    txt: StringUtils.format.apply(null, arguments)
-  });
-}
-
-function err() {
-  buffer.push({
-    error: true,
-    msg: StringUtils.format.apply(null, arguments)
-  });
-}
-
-function run() {
+/**
+ * Runs any Node script within a new scope.
+ */
+function __internal__interpreter__run() {
   var code = request.httpParameterMap.code.stringValue;
   var error = false;
   var exception = null;
   var codeResult = null;
-  response.setBuffered(false);
+
   try {
     var fn = new Function(code);
-    codeResult = fn.call();
+    codeResult = fn.call(null);
+    Logger.warn('Code executed:\n{0}', code);
   } catch (e) {
     exception = e;
-    Logger.error('Error in running script', e);
+    Logger.error('Error in running code:\n{0}', code, e);
     error = true;
     err(e);
   }
 
+  response.setBuffered(false);
   response.setContentType('application/json');
   response.writer.print(JSON.stringify({
     error: error,
@@ -49,11 +44,31 @@ function run() {
     buffer: buffer
   }));
 
-  buffer = null;
+  buffer = [];
 }
 
-show.public = true;
-run.public = true;
+/**
+ * Stores in the buffer object the string that the user wants to print as stdout.
+ */
+function print() {
+  buffer.push({
+    error: false,
+    txt: StringUtils.format.apply(null, arguments)
+  });
+}
 
-exports.Show = show;
-exports.Run = run;
+/**
+ * Stores in the buffer object the string that the user wants to print as stderr.
+ */
+function err() {
+  buffer.push({
+    error: true,
+    msg: StringUtils.format.apply(null, arguments)
+  });
+}
+
+__internal__interpreter__show.public = true;
+__internal__interpreter__run.public = true;
+
+exports.Show = __internal__interpreter__show;
+exports.Run = __internal__interpreter__run;

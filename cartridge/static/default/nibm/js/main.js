@@ -1,3 +1,6 @@
+/**
+ * Handles the code editor.
+ */
 var SFEditor = (function () {
     return {
         init: function (inputSel, outputSel) {
@@ -56,6 +59,11 @@ var SFEditor = (function () {
 
 SFEditor.init('.code-input', '.code-output');
 
+/**
+ * Renders the result of the script execution.
+ *
+ * @param {object} result from the server
+ */
 function renderResult(result) {
     jQuery('.window-result').text('');
     if (result.buffer) {
@@ -79,6 +87,7 @@ function renderResult(result) {
     }
 }
 
+// Binds the Run button
 jQuery('#js-nodeinterpreter-run').on('click', function (e) {
     e.preventDefault();
     jQuery('.window-result').css('border-top', '3px solid #007bff');
