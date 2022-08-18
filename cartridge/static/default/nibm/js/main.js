@@ -65,13 +65,14 @@ SFEditor.init('.code-input', '.code-output');
  * @param {object} result from the server
  */
 function renderResult(result) {
+    console.log(result);
     jQuery('.window-result').text('');
     if (result.buffer) {
         result.buffer.forEach(function (element) {
             if (element.error) {
                 jQuery('.window-result').append('<pre class="err">' + JSON.stringify(element.msg) + '</pre>');
             } else {
-                jQuery('.window-result').append('<pre>' + element.txt + '</pre>');
+                jQuery('.window-result').append('<pre>' + element.msg + '</pre>');
             }
         });
         if (result.error) {
@@ -91,6 +92,8 @@ function renderResult(result) {
 jQuery('#js-nodeinterpreter-run').on('click', function (e) {
     e.preventDefault();
     jQuery('.window-result').css('border-top', '3px solid #007bff');
+    jQuery('.window-result').text('');
+    jQuery('.window-result').append('<pre>Executing...</pre>');
     var href = jQuery('#js-nodeinterpreter-run').data('href');
     jQuery.post(href,
         {

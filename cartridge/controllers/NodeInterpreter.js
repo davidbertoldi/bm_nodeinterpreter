@@ -51,19 +51,23 @@ function __internal__interpreter__run() {
  * Stores in the buffer object the string that the user wants to print as stdout.
  */
 function print() {
-  buffer.push({
-    error: false,
-    txt: StringUtils.format.apply(null, arguments)
-  });
+  __internal__interpreter__out(arguments, false);
 }
 
 /**
  * Stores in the buffer object the string that the user wants to print as stderr.
  */
 function err() {
+  __internal__interpreter__out(arguments, true);
+}
+
+function __internal__interpreter__out(args, error) {
+  if (args[0] === null) {
+    args[0] = 'null';
+  }
   buffer.push({
-    error: true,
-    msg: StringUtils.format.apply(null, arguments)
+    error: error,
+    msg: StringUtils.format.apply(null, args)
   });
 }
 

@@ -32,7 +32,7 @@
   </div>
 </div>
 
-<script src="${URLUtils.staticURL('/nibm/js/main.js')}" defer='defer'></script>
+<script src="${URLUtils.staticURL('/nibm/js/main.js?h=' + new Date().getTime())}" defer='defer'></script>
 
 
 </isdecorate>
