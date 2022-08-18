@@ -4,7 +4,7 @@ const Logger = require('dw/system/Logger').getLogger('BMNI','NodeInterpreter');
 const StringUtils = require('dw/util/StringUtils');
 
 // The buffer is a global object.
-var buffer = []
+var __internal__interpreter__buffer = []
 
 /**
  * Shows the editor in the Business Manager
@@ -41,10 +41,10 @@ function __internal__interpreter__run() {
     error: error,
     exception: exception,
     codeResult: codeResult,
-    buffer: buffer
+    buffer: __internal__interpreter__buffer
   }));
 
-  buffer = [];
+  __internal__interpreter__buffer = [];
 }
 
 /**
@@ -65,7 +65,7 @@ function __internal__interpreter__out(args, error) {
   if (args[0] === null) {
     args[0] = 'null';
   }
-  buffer.push({
+  __internal__interpreter__buffer.push({
     error: error,
     msg: StringUtils.format.apply(null, args)
   });

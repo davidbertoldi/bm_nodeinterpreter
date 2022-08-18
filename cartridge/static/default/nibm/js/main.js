@@ -69,11 +69,7 @@ function renderResult(result) {
     jQuery('.window-result').text('');
     if (result.buffer) {
         result.buffer.forEach(function (element) {
-            if (element.error) {
-                jQuery('.window-result').append('<pre class="err">' + JSON.stringify(element.msg) + '</pre>');
-            } else {
-                jQuery('.window-result').append('<pre>' + element.msg + '</pre>');
-            }
+            jQuery('.window-result').append('<pre class="' + (element.error ? 'err' : 'print') + '">' + element.msg + '</pre>');
         });
         if (result.error) {
             jQuery('.window-result').css('border-top', '3px solid #dc3545');
