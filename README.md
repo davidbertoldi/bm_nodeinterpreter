@@ -1,14 +1,12 @@
 # Node Interpreter for Business Manager
-#### :warning: Before usage :warning:
-This product is intended for technical people who knows how to properly code in SFCC. 
-
+### :warning: Before usage :warning:
+This product is **NOT** intendend for production and intended only for technical people who knows how to properly code in SFCC. 
+The cartridge should be deployed only in development or sandboxes.
 Unintended usage (like big queries or object deletion) may cause disruption in the system. 
 This solution and its effects are **NOT** eligible for Salesforce Support. Use at your own risk.
 
 
 ## Overview
-When problems arise it is not possible to enter in debug mode or make custom queries without the help of a Support Ticket. In the meantime the situation is getting worse and worse in your production environment :fire:
-
 A Node interpreter is useful to solve problems fast and precisely!
 
 This tool provides an efficient way to execute custom code that can help developers to understand the root of a problem, to fix data without deploying a new job, export objects, *etc*.
