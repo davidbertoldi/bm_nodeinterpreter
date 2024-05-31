@@ -1,8 +1,11 @@
 # Node Interpreter for Business Manager
 ### :warning: Before usage :warning:
 This product is **NOT** intendend for production and intended only for technical people who knows how to properly code in SFCC. 
+
 The cartridge should be deployed only in development or sandboxes.
+
 Unintended usage (like big queries or object deletion) may cause disruption in the system. 
+
 This solution and its effects are **NOT** eligible for Salesforce Support. Use at your own risk.
 
 
