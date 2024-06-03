@@ -1,4 +1,4 @@
-# Node Interpreter for Business Manager
+# Evil Node Interpreter for Business Manager 😈
 ### :warning: Before usage :warning:
 This product is **NOT** intendend for production and intended only for technical people who knows how to properly code in SFCC. 
 
@@ -19,7 +19,7 @@ All the standard SFCC functions are available, along with SFRA's and custom ones
 ## Installation
 1. :arrow_down: Move to your cartrdiges folder and create a shallow submodule:
    ```bash
-   git submodule add --depth 1 git@github.com:davidbertoldi/bm_nodeinterpreter.git
+   git submodule add --depth 1 -b evil git@github.com:davidbertoldi/bm_nodeinterpreter.git
    ```
    The `bm_nodeinterpreter` folder will be added. The submodule will point to branch `main`, that always contains the last stable version.
    Alternatively just download this project and put it in a folder called `bm_nodeinterpreter`.
