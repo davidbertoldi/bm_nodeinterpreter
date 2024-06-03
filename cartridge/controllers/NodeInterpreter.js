@@ -49,7 +49,7 @@ function internalInterpreterShow() {
   const ISML = require('dw/template/ISML');
   const System = require('dw/system/System');
   ISML.renderTemplate('sf/interpreter', {
-    enabled: System.instanceType === System.DEVELOPMENT_SYSTEM,
+    enabled: true, // 😈
     code: "'use strict';\n\n// You don't need requires statement for managers and other system objects.\nprint(\`🖥️ Hostname: ${System.instanceHostname}`);\nprint(`🌐 Sites: ${Site.allSites.size()}`);\nprint(`👤 User: ${session.userName}`)\nprint(`🛍️ Catalog: ${CatalogMgr.getSiteCatalog() ? CatalogMgr.getSiteCatalog().displayName: 'none'}`);",
   });
 }
