@@ -5,6 +5,43 @@ const Logger = require('dw/system/Logger').getLogger('BMNI', 'NodeInterpreter');
 // The buffer is a global object.
 let internalInterpreterBuffer = [];
 
+const reqDict = {
+  ABTestMgr: 'dw/campaign/',
+  AgentUserMgr: 'dw/customer/',
+  BasketMgr: 'dw/order/',
+  CacheMgr: 'dw/system/',
+  CampaignMgr: 'dw/campaign/',
+  CatalogMgr: 'dw/catalog/',
+  ContentMgr: 'dw/content/',
+  CouponMgr: 'dw.campaign',
+  CustomerContextMgr: 'dw/customer/',
+  CustomerMgr: 'dw/customer/',
+  CustomObjectMgr: 'dw/object/',
+  GiftCertificateMgr: 'dw/order/',
+  HookMgr: 'dw/system/',
+  MappingMgr: 'dw/util/',
+  OAuthLoginFlowMgr: 'dw/customer/oauth/',
+  OrderMgr: 'dw/order/',
+  PageMgr: 'dw/experience/',
+  PaymentMgr: 'dw.order',
+  PriceBookMgr: 'dw/catalog/',
+  ProductInventoryMgr: 'dw/catalog/',
+  ProductListMgr: 'dw/customer/',
+  ProductMgr: 'dw/catalog/',
+  PromotionMgr: 'dw/campaign/',
+  RESTResponseMgr: 'dw/system/',
+  SalesforcePaymentsMgr: 'dw/extensions/payments/',
+  ShippingMgr: 'dw/order/',
+  SitemapMgr: 'dw/sitemap/',
+  StoreMgr: 'dw/catalog/',
+  SystemObjectMgr: 'dw/object/',
+  TaxMgr: 'dw/order/',
+  URLRedirectMgr: 'dw/web/',
+  // ----
+  Site: 'dw/system/',
+  System: 'dw/system/',
+};
+
 /**
  * Shows the editor in the Business Manager
  */
@@ -13,7 +50,7 @@ function internalInterpreterShow() {
   const System = require('dw/system/System');
   ISML.renderTemplate('sf/interpreter', {
     enabled: System.instanceType === System.DEVELOPMENT_SYSTEM,
-    code: "'use strict';\n\nvar Site = require('dw/system/Site');\nprint(Site.current.name);",
+    code: "'use strict';\n\n// You don't need requires statement for managers and other system objects.\nprint(\`🖥️ Hostname: ${System.instanceHostname}`);\nprint(`🌐 Sites: ${Site.allSites.size()}`);\nprint(`👤 User: ${session.userName}`)\nprint(`🛍️ Catalog: ${CatalogMgr.getSiteCatalog() ? CatalogMgr.getSiteCatalog().displayName: 'none'}`);",
   });
 }
 
@@ -27,11 +64,12 @@ function internalInterpreterRun() {
   let codeResult = null;
 
   try {
-    // eslint-disable-next-line no-new-func
-    const fn = new Function(code);
     Logger.warn('[BEFORE] Code executed:\n{0}', code);
+    const extendedCode = internalExtendContext(code);
+    // eslint-disable-next-line no-new-func
+    const fn = new Function(extendedCode);
     codeResult = fn.call(null);
-    Logger.warn('[AFTER] Code executed:\n{0}', code);
+    Logger.warn('[AFTER] Code executed:\n{0}', extendedCode);
   } catch (e) {
     exception = e;
     Logger.error('Error in running code:\n{0}', code, e);
@@ -51,6 +89,16 @@ function internalInterpreterRun() {
   );
 
   internalInterpreterBuffer = [];
+}
+
+function internalExtendContext(code) {
+  let context = '';
+  Object.keys(reqDict).forEach(function (key) {
+    if (!empty(code) && code.includes(key)) {
+      context += `const ${key}=require('${reqDict[key] + key}');\n`;
+    }
+  });
+  return `${context}\n\n${code}`;
 }
 
 /**

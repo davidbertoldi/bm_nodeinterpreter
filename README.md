@@ -35,7 +35,7 @@ Move to *Administration > Node Interpreter*.
 
 Put in the editor your code and click Run! 
 
-![example](https://i.imgur.com/3hHEIQU.png)
+![example](https://i.imgur.com/KbShnhC.png)
 
 
 ## Something is not working?

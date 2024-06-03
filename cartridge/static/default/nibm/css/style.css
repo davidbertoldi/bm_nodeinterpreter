@@ -33,6 +33,11 @@
     text-align: center !important;
 }
 
+.author {
+    margin-top: 1rem;
+    text-align: center;
+}
+
 .window .window-body {
     position: relative;
     height: 450px;

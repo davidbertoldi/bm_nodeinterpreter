@@ -1,7 +1,7 @@
 <isdecorate template="application/MenuFrame">
 
 <link rel="stylesheet" href="${URLUtils.staticURL('/nibm/css/prism.min.css')}" />
-<link rel="stylesheet" href="${URLUtils.staticURL('/nibm/css/style.css')}?h=${new Date().getTime())}" />
+<link rel="stylesheet" href="${URLUtils.staticURL('/nibm/css/style.css')}?h=${new Date().getTime()}" />
 
 <script src="${URLUtils.staticURL('/nibm/js/prism.min.js')}"></script>
 
@@ -41,6 +41,8 @@
     </div>
   </isif>
 </div>
+
+<div class="author">Made with &#128511; by <a href="https://github.com/davidbertoldi" target="_blank">David Bertoldi</a></div>
 
 <isif condition="${pdict.enabled}">
   <script src="${URLUtils.staticURL('/nibm/js/main.js?h=' + new Date().getTime())}" defer='defer'></script>
