@@ -23,6 +23,16 @@
     font-family: sans-serif;
 }
 
+.striked {
+    text-decoration: line-through;
+}
+
+.forbidden {
+    color: #dc3545 !important;
+    font-size: 1rem !important;
+    text-align: center !important;
+}
+
 .window .window-body {
     position: relative;
     height: 450px;

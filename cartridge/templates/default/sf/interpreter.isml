@@ -1,7 +1,7 @@
 <isdecorate template="application/MenuFrame">
 
 <link rel="stylesheet" href="${URLUtils.staticURL('/nibm/css/prism.min.css')}" />
-<link rel="stylesheet" href="${URLUtils.staticURL('/nibm/css/style.css')}" />
+<link rel="stylesheet" href="${URLUtils.staticURL('/nibm/css/style.css')}?h=${new Date().getTime())}" />
 
 <script src="${URLUtils.staticURL('/nibm/js/prism.min.js')}"></script>
 
@@ -19,20 +19,32 @@
 
 <div class="window">
   <div class="window-header">
-    <a href="javascript: void 0;" class="control" id="js-nodeinterpreter-run" data-href="NodeInterpreter-Run">Run</a>
+    <isif condition="${pdict.enabled}">
+      <a href="javascript: void 0;" class="control" id="js-nodeinterpreter-run" data-href="NodeInterpreter-Run">Run</a>
+    <iselse/>
+      <span class="control striked">Run</span>
+    </isif>
   </div>
   <div class="window-body">
-    <textarea class="code-input" spellcheck="false">${pdict.code}</textarea>
+    <isif condition="${pdict.enabled}">
+      <textarea class="code-input" spellcheck="false">${pdict.code}</textarea>
+    <iselse/>
+      <div class="code-input forbidden">This feature can be used only in Development or Sandboxes.</div>
+    </isif>
     <pre class="code-output">
       <code class="language-javascript"></code>
     </pre>
   </div>
-  <div class="window-result">
-    <pre>The output will be displayed here!</pre>
-  </div>
+  <isif condition="${pdict.enabled}">
+    <div class="window-result">
+      <pre>The output will be displayed here!</pre>
+    </div>
+  </isif>
 </div>
 
-<script src="${URLUtils.staticURL('/nibm/js/main.js?h=' + new Date().getTime())}" defer='defer'></script>
+<isif condition="${pdict.enabled}">
+  <script src="${URLUtils.staticURL('/nibm/js/main.js?h=' + new Date().getTime())}" defer='defer'></script>
+</isif>
 
 
 </isdecorate>
